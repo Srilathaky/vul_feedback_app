@@ -20,3 +20,31 @@ After cloning the repo, you can run ```docker-compose up``` and that should set 
 # Dependencies Status
 [![Dependency Status](https://gemnasium.com/badges/github.com/jaydeepc/vul_feedback_app.svg)](https://gemnasium.com/github.com/jaydeepc/vul_feedback_app)
 
+
+# Setup without docker (for MAC)
+1. Install mysql if mysql is not installed(mysql can be installed using brew: `brew install mysql`).
+
+2. Start the mysql server by running `mysql.server start` command in the terminal.
+
+3. Host the mysql locally with username `mysql -h localhost -u root`
+
+4. Run the following commands on terminal where mysql is ready
+    `create database Feedback`;
+    `use Feedback`;
+    `source "vul_feedback_app" repository path/db/db.sql`
+    
+5. Two tables reviews and users will be created inside Feedback database.
+
+6. Navigate to the "vul_feedback_app" repository path and run the following commands
+    `pyvenv test_feedback`
+    `source test_feedback/bin/activate`
+    
+
+7. Run the following commands
+    `pip install -r requirements.txt`
+    
+8. In app.py file, change "app.config['MYSQL_DATABASE_HOST'] = 'db_server'" to app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+
+9. Run the command `python app.py`.
+
+10. Access the application "http://localhost:5000/home".
